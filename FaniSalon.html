@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vannie Salon — Kecantikan Tanpa Kompromi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A96E;--gold-l:#E8D5B0;--gold-d:#8B6B3A;--black:#0A0805;--dark:#111008;--dark2:#1A1610;--cream:#F5EDD8;--cream2:#EDE3C8;--white:#FEFCF7;--rose:#C4806A;--muted:#7A6D5A;--dim:#5A5040}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--cream);font-family:'Montserrat',sans-serif;font-weight:300;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--black)}::-webkit-scrollbar-thumb{background:var(--gold-d)}
+button,input,select,textarea{font-family:'Montserrat',sans-serif}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 52px;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
+#nav.scrolled{background:rgba(10,8,5,.97);border-bottom:1px solid rgba(201,169,110,.13);padding:14px 52px;backdrop-filter:blur(14px)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-style:italic;color:var(--gold);letter-spacing:.08em}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{color:var(--cream2);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;position:relative;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.nav-links a:hover{color:var(--gold)}.nav-links a:hover::after{width:100%}
+.nav-book{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:9px 24px;font-size:.66rem;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.nav-book:hover{background:var(--gold);color:var(--black)}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 65% 40%,rgba(201,169,110,.07) 0%,transparent 70%),var(--black)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,110,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,.04) 1px,transparent 1px);background-size:72px 72px}
+.hero-orb1{position:absolute;top:18%;right:14%;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,.08),transparent 70%);pointer-events:none}
+.hero-orb2{position:absolute;bottom:18%;left:9%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(196,128,106,.06),transparent 70%);pointer-events:none}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;animation:fadeUp .9s ease forwards}
+.hero-eyebrow{display:flex;align-items:center;justify-content:center;gap:18px;font-size:.6rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:36px}
+.eyebrow-line{display:inline-block;width:48px;height:1px}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,12vw,10rem);font-weight:300;line-height:.9;font-style:italic;color:var(--gold);letter-spacing:-.01em}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,4vw,2.8rem);font-weight:300;letter-spacing:.32em;color:var(--cream2);text-transform:uppercase;margin-top:10px;margin-bottom:36px}
+.hero-desc{font-size:.84rem;letter-spacing:.07em;color:var(--muted);max-width:500px;margin:0 auto 52px;line-height:2.1}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:var(--black);border:none;padding:16px 46px;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;font-weight:600;transition:all .3s}
+.btn-gold:hover{background:var(--gold-l);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--cream);border:1px solid rgba(245,237,216,.25);padding:16px 46px;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;font-weight:300;transition:all .3s;display:inline-block}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{display:flex;gap:52px;justify-content:center;flex-wrap:wrap;margin-top:72px;padding-top:48px;border-top:1px solid rgba(201,169,110,.1)}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-style:italic;color:var(--gold);line-height:1}
+.stat-l{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-top:6px}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px}
+.hero-scroll p{font-size:.55rem;letter-spacing:.4em;text-transform:uppercase;color:var(--dim)}
+.scroll-bar{width:1px;height:52px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollAnim 2s ease-in-out infinite}
+
+/* MARQUEE */
+.marquee-wrap{overflow:hidden;border-top:1px solid rgba(201,169,110,.1);border-bottom:1px solid rgba(201,169,110,.1);padding:18px 0;background:rgba(201,169,110,.02)}
+.marquee-track{display:flex;gap:56px;width:max-content;animation:marquee 22s linear infinite}
+.marquee-item{display:flex;align-items:center;gap:14px;font-size:.6rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);opacity:.65;white-space:nowrap}
+.marquee-item::before{content:'✦';font-size:.45rem}
+
+/* ABOUT */
+#about{padding:120px 52px;max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+.about-visual{position:relative}
+.about-frame{width:100%;aspect-ratio:3/4;max-width:420px;background:linear-gradient(135deg,var(--dark2),var(--dark));position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+.about-frame::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 30%,rgba(201,169,110,.13),transparent 60%),radial-gradient(ellipse at 70% 70%,rgba(196,128,106,.07),transparent 60%)}
+.about-emoji{font-size:5rem;opacity:.14;animation:breathe 4s ease-in-out infinite}
+.about-frame-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--gold);opacity:.35;letter-spacing:.2em}
+.about-border{position:absolute;top:24px;right:-24px;bottom:-24px;left:24px;border:1px solid rgba(201,169,110,.18);pointer-events:none}
+.about-badge{position:absolute;bottom:-36px;right:-36px;width:116px;height:116px;border-radius:50%;background:var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--black);z-index:2;animation:rotateSlow 22s linear infinite}
+.badge-n{font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:600;line-height:1;animation:counterRotate 22s linear infinite}
+.badge-t{font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;text-align:center;line-height:1.4;animation:counterRotate 22s linear infinite}
+.section-label{font-size:.6rem;letter-spacing:.48em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:flex;align-items:center;gap:14px}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(201,169,110,.18)}
+.about-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.6rem);font-weight:300;color:var(--white);line-height:1.15;margin-bottom:28px}
+.about-title em{font-style:italic;color:var(--gold)}
+.about-body{color:var(--muted);line-height:2.1;font-size:.84rem;margin-bottom:18px}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;border-top:1px solid rgba(201,169,110,.1);padding-top:36px;margin-top:36px}
+
+/* SERVICES */
+#services{padding:110px 52px;background:linear-gradient(180deg,transparent,rgba(201,169,110,.02) 50%,transparent)}
+.sec-head{text-align:center;margin-bottom:56px}
+.sec-eyebrow{font-size:.6rem;letter-spacing:.48em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.8rem);font-weight:300;color:var(--white);margin-top:14px}
+.sec-title em{font-style:italic;color:var(--gold)}
+.cat-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:52px}
+.cat-tab{background:transparent;border:1px solid rgba(201,169,110,.18);color:var(--muted);padding:9px 22px;font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.cat-tab:hover,.cat-tab.active{background:var(--gold);border-color:var(--gold);color:var(--black);font-weight:600}
+.services-grid{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px}
+.svc-card{background:var(--dark2);padding:38px 32px;position:relative;overflow:hidden;border:1px solid rgba(201,169,110,.06);transition:transform .35s,box-shadow .35s}
+.svc-card:hover{transform:translateY(-5px);box-shadow:0 24px 64px rgba(0,0,0,.55)}
+.svc-bg-letter{position:absolute;top:8px;right:18px;font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;color:rgba(201,169,110,.06);line-height:1;user-select:none;pointer-events:none}
+.svc-icon{font-size:1.9rem;margin-bottom:18px;display:block}
+.svc-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--white);margin-bottom:12px;font-weight:400}
+.svc-desc{font-size:.76rem;color:var(--muted);line-height:1.9;margin-bottom:20px}
+.svc-dur{font-size:.58rem;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-bottom:24px}
+.svc-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(201,169,110,.09);padding-top:20px}
+.svc-price{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-style:italic;color:var(--gold)}
+.svc-price-sub{font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:3px}
+.add-btn{width:40px;height:40px;border-radius:50%;background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:1.4rem;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center}
+.add-btn:hover,.add-btn.active{background:var(--gold);color:var(--black)}
+
+/* GALLERY */
+#gallery{padding:100px 0;overflow:hidden}
+.gallery-strip-wrap{overflow:hidden;margin-top:56px}
+.gallery-strip{display:flex;gap:16px;width:max-content;animation:marquee 28s linear infinite}
+.gallery-item{width:250px;height:330px;flex-shrink:0;background:linear-gradient(135deg,var(--dark2),var(--dark));border:1px solid rgba(201,169,110,.07);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;position:relative;overflow:hidden}
+.gallery-item::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,169,110,.04),rgba(196,128,106,.03))}
+.gallery-emoji{font-size:2.6rem;opacity:.3;position:relative;z-index:1}
+.gallery-lbl{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.9rem;color:var(--gold);opacity:.4;letter-spacing:.18em;position:relative;z-index:1}
+
+/* TESTIMONIALS */
+#testimonials{padding:100px 52px;max-width:1360px;margin:0 auto}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:56px}
+.testi-card{padding:36px;border:1px solid rgba(201,169,110,.1);background:rgba(255,255,255,.012);transition:transform .3s,border-color .3s}
+.testi-card:hover{transform:translateY(-4px);border-color:rgba(201,169,110,.35)}
+.testi-quote{font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--gold);opacity:.14;line-height:.7;margin-bottom:6px}
+.testi-stars{display:flex;gap:4px;margin-bottom:16px}
+.star{color:var(--gold);font-size:.75rem}
+.testi-text{font-size:.82rem;color:var(--muted);line-height:2;font-style:italic;margin-bottom:28px}
+.testi-author{display:flex;align-items:center;gap:14px}
+.author-ava{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold-d),var(--rose));display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.author-name{font-size:.82rem;font-weight:500;color:var(--cream2)}
+.author-role{font-size:.6rem;letter-spacing:.1em;color:var(--dim);margin-top:3px}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid rgba(201,169,110,.1);padding:70px 52px 36px}
+.footer-grid{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:52px;margin-bottom:52px}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:2rem;font-style:italic;color:var(--gold);margin-bottom:16px;display:block}
+.footer-desc{font-size:.77rem;color:var(--dim);line-height:1.95;max-width:260px}
+.footer-col-title{font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:11px}
+.footer-links li{color:var(--dim);font-size:.79rem;transition:color .3s;cursor:pointer}
+.footer-links li:hover{color:var(--cream)}
+.footer-bottom{max-width:1360px;margin:0 auto;border-top:1px solid rgba(201,169,110,.08);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-copy{font-size:.67rem;color:var(--dim);letter-spacing:.08em}
+.footer-socials{display:flex;gap:10px}
+.footer-soc{width:34px;height:34px;border:1px solid rgba(201,169,110,.15);display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:.7rem;cursor:pointer;transition:all .3s;text-transform:uppercase}
+.footer-soc:hover{border-color:var(--gold);color:var(--gold)}
+
+/* FLOAT CART */
+#float-cart{position:fixed;bottom:32px;right:32px;z-index:200;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+#cart-chip{background:rgba(10,8,5,.95);border:1px solid rgba(201,169,110,.3);backdrop-filter:blur(12px);padding:8px 16px;font-size:.7rem;color:var(--gold);white-space:nowrap;letter-spacing:.05em;opacity:0;transform:translateX(20px);transition:all .35s;pointer-events:none}
+#cart-chip.show{opacity:1;transform:translateX(0)}
+#cart-btn{width:62px;height:62px;border-radius:50%;background:var(--gold);border:none;font-size:1.35rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(201,169,110,.45);transition:transform .3s;position:relative;animation:pulse 2.5s infinite}
+#cart-btn:hover{transform:scale(1.1)}
+#cart-count{position:absolute;top:-4px;right:-4px;width:22px;height:22px;border-radius:50%;background:var(--rose);font-size:.62rem;font-weight:700;color:#fff;display:none;align-items:center;justify-content:center}
+#cart-count.show{display:flex}
+
+/* MODAL */
+#modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);z-index:500;display:none;align-items:center;justify-content:center;padding:20px}
+#modal-overlay.open{display:flex;animation:fadeUp .3s ease}
+.modal-box{background:var(--dark2);border:1px solid rgba(201,169,110,.14);max-width:680px;width:100%;max-height:92vh;overflow-y:auto;position:relative}
+.modal-head{padding:40px 44px 28px;border-bottom:1px solid rgba(201,169,110,.1);display:flex;justify-content:space-between;align-items:flex-start}
+.modal-lbl{font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-style:italic;color:var(--white);line-height:1.1}
+.modal-close{background:transparent;border:1px solid rgba(201,169,110,.2);color:var(--muted);width:38px;height:38px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0}
+.modal-close:hover{border-color:var(--gold);color:var(--gold)}
+.modal-body{padding:36px 44px 44px}
+.o-label{font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.order-items{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.order-item{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(255,255,255,.025);border:1px solid rgba(201,169,110,.07)}
+.oi-name{font-size:.84rem;color:var(--cream2)}
+.oi-cat{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:3px}
+.oi-right{display:flex;align-items:center;gap:12px}
+.oi-price{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--gold)}
+.rm-btn{background:transparent;border:none;color:var(--dim);cursor:pointer;font-size:.9rem;padding:3px 7px;transition:color .2s}
+.rm-btn:hover{color:var(--rose)}
+.order-total{display:flex;justify-content:space-between;align-items:center;padding:14px 0 0;border-top:1px solid rgba(201,169,110,.14);margin-top:4px}
+.ot-label{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.ot-amount{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-style:italic;color:var(--gold)}
+.empty-msg{border:1px dashed rgba(201,169,110,.12);padding:28px 20px;text-align:center;color:var(--dim);font-size:.78rem;line-height:1.8}
+.form-divider{margin:32px 0 22px;font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{display:flex;flex-direction:column;gap:7px}
+.form-group.full{grid-column:1/-1}
+.form-lbl{font-size:.57rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.form-input,.form-select,.form-textarea{background:rgba(255,255,255,.03);border:1px solid rgba(201,169,110,.15);color:var(--cream);padding:12px 14px;font-size:.8rem;outline:none;width:100%;transition:border-color .3s}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold);background:rgba(201,169,110,.03)}
+.form-select{appearance:none;cursor:pointer;background-color:rgba(255,255,255,.03);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A96E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.form-select option{background:var(--dark2);color:var(--cream)}
+.form-textarea{resize:none;height:90px}
+input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.6) sepia(1) saturate(2) hue-rotate(5deg);cursor:pointer}
+.form-submit{margin-top:28px;width:100%;background:var(--gold);border:none;color:var(--black);padding:17px;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background .3s}
+.form-submit:hover{background:var(--gold-l)}
+.form-submit:disabled{opacity:.6;cursor:wait}
+.form-note{text-align:center;margin-top:14px;font-size:.62rem;color:var(--dim);line-height:1.8}
+
+/* SUCCESS */
+#success-view{display:none;padding:60px 44px;text-align:center}
+#success-view.show{display:block}
+.success-icon{font-size:3.8rem;margin-bottom:24px}
+.success-title{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-style:italic;color:var(--white);margin-bottom:12px}
+.success-sub{font-size:.82rem;color:var(--muted);line-height:1.9;max-width:420px;margin:0 auto}
+.success-code{display:inline-block;margin-top:24px;padding:10px 28px;border:1px solid var(--gold);color:var(--gold);font-size:.78rem;letter-spacing:.3em}
+.success-actions{margin-top:36px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* TOAST */
+#toast{position:fixed;bottom:108px;right:32px;z-index:300;background:var(--dark2);border:1px solid rgba(201,169,110,.25);padding:12px 20px;font-size:.76rem;color:var(--cream2);max-width:260px;line-height:1.6;transform:translateX(120%);transition:transform .4s;pointer-events:none}
+#toast.show{transform:translateX(0)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.14}50%{transform:scale(1.06);opacity:.2}}
+@keyframes rotateSlow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes counterRotate{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(201,169,110,.45)}70%{box-shadow:0 0 0 14px rgba(201,169,110,0)}}
+
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .85s ease,transform .85s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  #about{grid-template-columns:1fr;gap:60px;padding:80px 28px}
+  .about-frame{max-width:360px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:36px}
+}
+@media(max-width:768px){
+  #nav{padding:18px 24px}#nav.scrolled{padding:12px 24px}
+  .nav-links{display:none}
+  .nav-book{padding:8px 18px;font-size:.6rem}
+  #services{padding:80px 20px}
+  #testimonials{padding:80px 20px}
+  footer{padding:60px 20px 32px}
+  .footer-grid{grid-template-columns:1fr;gap:32px}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .modal-head{padding:28px 24px 22px}.modal-body{padding:28px 24px 36px}
+  .form-grid{grid-template-columns:1fr}
+  .hero-stats{gap:32px}
+  #float-cart{bottom:20px;right:20px}
+  #toast{bottom:100px;right:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">Vannie Salon</div>
+  <ul class="nav-links">
+    <li><a href="#about">Tentang</a></li>
+    <li><a href="#services">Layanan</a></li>
+    <li><a href="#gallery">Galeri</a></li>
+    <li><a href="#testimonials">Ulasan</a></li>
+    <li><a href="#footer-sec">Kontak</a></li>
+  </ul>
+  <button class="nav-book" onclick="openModal()">Reservasi Sekarang</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-line" style="background:linear-gradient(to right,transparent,#C9A96E)"></span>
+      Salon Kecantikan Premium &middot; Malang
+      <span class="eyebrow-line" style="background:linear-gradient(to left,transparent,#C9A96E)"></span>
+    </div>
+    <h1 class="hero-name">Fani</h1>
+    <h2 class="hero-sub">Salon &amp; Beauty</h2>
+    <p class="hero-desc">Pengalaman kecantikan yang memanjakan jiwa dan raga. Setiap sentuhan adalah karya seni, setiap layanan adalah persembahan terbaik untuk Anda.</p>
+    <div class="hero-btns">
+      <button class="btn-gold" onclick="openModal()">Reservasi Sekarang</button>
+      <a href="#services" class="btn-outline">Lihat Layanan</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-n">100+</div><div class="stat-l">Klien Bahagia</div></div>
+      <div><div class="stat-n">30+</div><div class="stat-l">Layanan Premium</div></div>
+      <div><div class="stat-n">3 Thn</div><div class="stat-l">Berpengalaman</div></div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <p>Scroll</p>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Hair Treatment</span>
+    <span class="marquee-item">Perawatan Wajah</span>
+    <span class="marquee-item">Manicure &amp; Pedicure</span>
+    <span class="marquee-item">Body Spa</span>
+    <span class="marquee-item">Waxing &amp; Threading</span>
+    <span class="marquee-item">Makeup Profesional</span>
+    <span class="marquee-item">Hair Coloring</span>
+    <span class="marquee-item">Keriting &amp; Rebonding</span>
+    <span class="marquee-item">Hair Treatment</span>
+    <span class="marquee-item">Perawatan Wajah</span>
+    <span class="marquee-item">Manicure &amp; Pedicure</span>
+    <span class="marquee-item">Body Spa</span>
+    <span class="marquee-item">Waxing &amp; Threading</span>
+    <span class="marquee-item">Makeup Profesional</span>
+    <span class="marquee-item">Hair Coloring</span>
+    <span class="marquee-item">Keriting &amp; Rebonding</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal">
+    <div class="about-frame">
+      <div class="about-emoji">✂️</div>
+      <div class="about-frame-label">Est. 2018</div>
+    </div>
+    <div class="about-border"></div>
+    <div class="about-badge">
+      <div class="badge-n">2+</div>
+      <div class="badge-t">Tahun<br>Keunggulan</div>
+    </div>
+  </div>
+  <div class="reveal" style="padding-top:40px">
+    <div class="section-label">Tentang Kami</div>
+    <h2 class="about-title">Keindahan <em>Sejati</em><br>Dimulai di Sini</h2>
+    <p class="about-body">Vannie Salon hadir dengan misi sederhana namun mulia: membantu setiap wanita memancarkan kecantikan terbaiknya. Didirikan tahun 2018, kami telah melayani ribuan klien dengan sentuhan profesional dan kehangatan yang tulus.</p>
+    <p class="about-body">Tim stylist kami berpengalaman lebih dari 2 tahun, menggunakan produk berkualitas tinggi pilihan, dan selalu mengikuti tren kecantikan terkini dari dalam maupun luar negeri.</p>
+    <div class="about-stats">
+      <div><div class="stat-n">5000+</div><div class="stat-l">Klien Bahagia</div></div>
+      <div><div class="stat-n">30+</div><div class="stat-l">Layanan</div></div>
+      <div><div class="stat-n">7</div><div class="stat-l">Tahun Pengalaman</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="sec-head reveal">
+    <div class="sec-eyebrow">Layanan Kami</div>
+    <h2 class="sec-title">Pilih <em>Kecantikan</em> yang Anda Inginkan</h2>
+  </div>
+  <div class="cat-tabs reveal">
+    <button class="cat-tab active" data-cat="all">Semua</button>
+    <button class="cat-tab" data-cat="rambut">💇 Rambut</button>
+    <button class="cat-tab" data-cat="wajah">🧖 Wajah</button>
+    <button class="cat-tab" data-cat="kuku">💅 Kuku</button>
+    <button class="cat-tab" data-cat="tubuh">🌸 Tubuh</button>
+    <button class="cat-tab" data-cat="makeup">💄 Makeup</button>
+  </div>
+  <div class="services-grid" id="services-grid"></div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" style="padding:100px 0;overflow:hidden">
+  <div class="sec-head reveal" style="padding:0 52px">
+    <div class="sec-eyebrow">Galeri Karya</div>
+    <h2 class="sec-title">Hasil <em>Nyata</em>, Kepuasan Sejati</h2>
+  </div>
+  <div class="gallery-strip-wrap">
+    <div class="gallery-strip">
+      <div class="gallery-item"><span class="gallery-emoji">💇‍♀️</span><span class="gallery-lbl">Hair Styling</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">💅</span><span class="gallery-lbl">Nail Art</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">🧖‍♀️</span><span class="gallery-lbl">Facial Spa</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">💄</span><span class="gallery-lbl">Makeup Look</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">🌿</span><span class="gallery-lbl">Hair Treatment</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">✨</span><span class="gallery-lbl">Body Care</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">🎨</span><span class="gallery-lbl">Hair Color</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">🌸</span><span class="gallery-lbl">Bridal Look</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">💇‍♀️</span><span class="gallery-lbl">Hair Styling</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">💅</span><span class="gallery-lbl">Nail Art</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">🧖‍♀️</span><span class="gallery-lbl">Facial Spa</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">💄</span><span class="gallery-lbl">Makeup Look</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">🌿</span><span class="gallery-lbl">Hair Treatment</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">✨</span><span class="gallery-lbl">Body Care</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">🎨</span><span class="gallery-lbl">Hair Color</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">🌸</span><span class="gallery-lbl">Bridal Look</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="sec-head reveal">
+    <div class="sec-eyebrow">Ulasan Pelanggan</div>
+    <h2 class="sec-title">Kata <em>Mereka</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="testi-text">Pelayanannya luar biasa! Rambutku yang rusak kini sehat dan berkilau. Mbak-mbaknya ramah dan profesional banget. Pasti balik lagi!</p>
+      <div class="testi-author"><div class="author-ava">🌸</div><div><div class="author-name">Sari Dewi</div><div class="author-role">Pelanggan Setia · 3 Tahun</div></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="testi-text">Facial-nya bikin kulit glowing banget! Suasana salonnya nyaman dan bersih. Harga terjangkau untuk kualitas yang premium banget.</p>
+      <div class="testi-author"><div class="author-ava">💫</div><div><div class="author-name">Rina Maharani</div><div class="author-role">Pelanggan · 1 Tahun</div></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="testi-text">Makeup wisudaku hasilnya cantik banget! Tahan seharian, foto memuaskan. Rekomendasiin ke semua teman-temanku!</p>
+      <div class="testi-author"><div class="author-ava">👑</div><div><div class="author-name">Putri Amelia</div><div class="author-role">Pelanggan Baru</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer-sec">
+  <div class="footer-grid">
+    <div>
+      <span class="footer-logo">Vannie Salon</span>
+      <p class="footer-desc">Salon kecantikan premium di Malang yang hadir untuk membantu Anda memancarkan kecantikan sejati setiap hari.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Layanan</div>
+      <ul class="footer-links">
+        <li>Hair Care</li><li>Facial Treatment</li><li>Nail Art</li><li>Body Spa</li><li>Bridal Package</li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Info</div>
+      <ul class="footer-links">
+        <li>Tentang Kami</li><li>Promo Terbaru</li><li>Paket Member</li><li>Karir</li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Kontak</div>
+      <ul class="footer-links">
+        <li>📍 Housing Amany Regency blok.G2</li>
+        <li>📞 0812-3456-7890</li>
+        <li>🕐 07.00 – 20.00 WIB</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Vannie Salon. Semua hak cipta dilindungi.</span>
+    <div class="footer-socials">
+      <div class="footer-soc">ig</div>
+      <div class="footer-soc">wa</div>
+      <div class="footer-soc">tk</div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOAT CART -->
+<div id="float-cart">
+  <div id="cart-chip"></div>
+  <button id="cart-btn" onclick="openModal()">
+    🛒
+    <span id="cart-count"></span>
+  </button>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- MODAL -->
+<div id="modal-overlay" onclick="overlayClick(event)">
+  <div class="modal-box">
+
+    <div id="form-view">
+      <div class="modal-head">
+        <div>
+          <div class="modal-lbl">Reservasi Layanan</div>
+          <div class="modal-title">Pesan di Vannie Salon</div>
+        </div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="o-label">Layanan yang Dipilih</div>
+        <div id="modal-items"></div>
+
+        <div class="form-divider">Data Reservasi</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-lbl">Nama Lengkap *</label>
+            <input class="form-input" id="f-name" type="text" placeholder="Masukkan nama Anda">
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">No. WhatsApp *</label>
+            <input class="form-input" id="f-phone" type="tel" placeholder="08xxxxxxxxxx">
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">Tanggal Kunjungan *</label>
+            <input class="form-input" id="f-date" type="date">
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">Jam Kunjungan *</label>
+            <select class="form-select" id="f-time">
+              <option value="">Pilih jam...</option>
+              <option>09:00 WIB</option><option>09:30 WIB</option><option>10:00 WIB</option>
+              <option>10:30 WIB</option><option>11:00 WIB</option><option>11:30 WIB</option>
+              <option>13:00 WIB</option><option>13:30 WIB</option><option>14:00 WIB</option>
+              <option>14:30 WIB</option><option>15:00 WIB</option><option>15:30 WIB</option>
+              <option>16:00 WIB</option><option>16:30 WIB</option><option>17:00 WIB</option>
+              <option>18:00 WIB</option><option>19:00 WIB</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">Stylist Pilihan</label>
+            <select class="form-select" id="f-stylist">
+              <option value="">Tersedia / Bebas</option>
+              <option>Fani (Owner)</option><option>Rini</option><option>Susi</option><option>Dewi</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">Info dari Mana</label>
+            <select class="form-select" id="f-source">
+              <option>Instagram</option><option>WhatsApp</option><option>TikTok</option>
+              <option>Referensi Teman</option><option>Google</option><option>Pelanggan Lama</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label class="form-lbl">Catatan Tambahan</label>
+            <textarea class="form-textarea" id="f-notes" placeholder="Alergi, preferensi khusus, atau permintaan lain..."></textarea>
+          </div>
+        </div>
+        <button class="form-submit" id="submit-btn" onclick="submitOrder()">Konfirmasi Reservasi →</button>
+        <p class="form-note">Dengan menekan tombol di atas Anda menyetujui syarat &amp; ketentuan Fani Salon.<br>Konfirmasi akan dikirim melalui WhatsApp Anda.</p>
+      </div>
+    </div>
+
+    <div id="success-view">
+      <div class="success-icon">✨</div>
+      <div class="success-title">Reservasi Berhasil!</div>
+      <p class="success-sub">Terima kasih telah memilih Fani Salon. Kami akan segera menghubungi Anda melalui WhatsApp untuk konfirmasi reservasi.</p>
+      <div class="success-code" id="booking-code">ORDER #FS-000000</div>
+      <div class="success-actions">
+        <button class="btn-gold" onclick="resetAndClose()">Tutup</button>
+        <button class="btn-outline" onclick="resetForm()">Pesan Lagi</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// ⚙️  GANTI URL INI DENGAN GOOGLE APPS SCRIPT URL ANDA
+// ═══════════════════════════════════════════════
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbw3WZtc18v8oVLJdo6RYDTlfJcc2l-qSvyTYR1QK4FdPkDMypgi3x2O5TKXzPBmL9NUTQ/exec';
+
+const SERVICES = [
+  {id:1,cat:'rambut',icon:'🌿',name:'Creambath & Hair Spa',desc:'Perawatan rambut intensif dengan krim nutrisi pilihan, pijat kepala relaksasi, dan steam untuk rambut sehat berkilau.',price:85000,dur:'60 mnt'},
+  {id:2,cat:'rambut',icon:'🎨',name:'Hair Coloring Premium',desc:'Pewarnaan rambut dengan produk tanpa amonia berkualitas tinggi. Pilihan warna lengkap dari natural hingga fashion color.',price:250000,dur:'120 mnt'},
+  {id:3,cat:'rambut',icon:'🌀',name:'Keriting Digital',desc:'Ikal sempurna dengan teknik digital modern. Tahan lama hingga 12 bulan tanpa merusak rambut.',price:300000,dur:'180 mnt'},
+  {id:4,cat:'rambut',icon:'✨',name:'Smoothing & Rebonding',desc:'Pelurus rambut semi-permanen dengan produk premium. Rambut lurus sempurna anti-frizz selama 6–12 bulan.',price:350000,dur:'180 mnt'},
+  {id:5,cat:'rambut',icon:'💨',name:'Blow Dry & Styling',desc:'Pengeringan dan penataan rambut profesional untuk acara atau aktivitas harian.',price:70000,dur:'45 mnt'},
+  {id:6,cat:'rambut',icon:'💆‍♀️',name:'Hair Mask Keratin',desc:'Masker keratin intensif untuk memperbaiki rambut rusak dan frizzy. Kembali lembut dan berkilau.',price:150000,dur:'60 mnt'},
+  {id:7,cat:'wajah',icon:'🧖‍♀️',name:'Facial Basic',desc:'Pembersihan wajah mendalam, uap, ekstraksi komedo, masker, dan pelembab. Cocok semua jenis kulit.',price:120000,dur:'60 mnt'},
+  {id:8,cat:'wajah',icon:'💎',name:'Facial Premium + LED',desc:'Facial lengkap dengan terapi LED untuk mencerahkan kulit, mengurangi jerawat, dan anti-aging.',price:220000,dur:'90 mnt'},
+  {id:9,cat:'wajah',icon:'🌟',name:'Peeling & Whitening',desc:'Pengelupasan sel kulit mati dengan AHA/BHA diikuti treatment whitening untuk kulit cerah bercahaya.',price:180000,dur:'75 mnt'},
+  {id:10,cat:'kuku',icon:'💅',name:'Manicure Klasik',desc:'Perawatan lengkap kuku tangan: pengikiran, cuticula, pijat tangan, dan cat kuku pilihan premium.',price:65000,dur:'45 mnt'},
+  {id:11,cat:'kuku',icon:'👣',name:'Pedicure Spa',desc:'Rendam milk honey, scrub, pijat kaki, perawatan kuku, dan cat kuku tahan lama.',price:85000,dur:'60 mnt'},
+  {id:12,cat:'kuku',icon:'🖌️',name:'Nail Art Custom',desc:'Desain nail art eksklusif: gradasi, motif floral, marble, rhinestone, hingga 3D art.',price:150000,dur:'90 mnt'},
+  {id:13,cat:'tubuh',icon:'🌸',name:'Body Scrub Herbal',desc:'Lulur tubuh dengan racikan herbal tradisional Jawa. Kulit halus, cerah, dan wangi alami.',price:180000,dur:'60 mnt'},
+  {id:14,cat:'tubuh',icon:'🏮',name:'Body Massage Full',desc:'Pijat relaksasi seluruh tubuh 90 menit dengan teknik Swedish dan reflexology.',price:200000,dur:'90 mnt'},
+  {id:15,cat:'tubuh',icon:'🌺',name:'Waxing (Per Area)',desc:'Waxing bersih menggunakan lilin berkualitas. Kulit mulus tahan 3–4 minggu.',price:80000,dur:'30 mnt'},
+  {id:16,cat:'makeup',icon:'💄',name:'Makeup Party / Wisuda',desc:'Makeup profesional untuk pesta, wisuda, tunangan. Tahan 8–12 jam dengan produk branded.',price:350000,dur:'90 mnt'},
+  {id:17,cat:'makeup',icon:'👰',name:'Makeup Pengantin',desc:'Makeup pengantin full paket termasuk sanggul, hijab, dan touch-up selama acara berlangsung.',price:1500000,dur:'180 mnt'},
+  {id:18,cat:'makeup',icon:'💍',name:'Paket Bride To Be',desc:'Paket lengkap: perawatan wajah 3x, body scrub, manicure pedicure, dan trial makeup pengantin.',price:2500000,dur:'Paket'},
+];
+
+let cart = [];
+let activeCat = 'all';
+const fmt = n => 'Rp ' + n.toLocaleString('id-ID');
+const $ = id => document.getElementById(id);
+
+// NAVBAR
+window.addEventListener('scroll', () => {
+  $('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// REVEAL
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// RENDER SERVICES
+function renderServices() {
+  const list = activeCat === 'all' ? SERVICES : SERVICES.filter(s => s.cat === activeCat);
+  const letters = {rambut:'R',wajah:'W',kuku:'K',tubuh:'T',makeup:'M'};
+  $('services-grid').innerHTML = list.map(s => {
+    const inCart = cart.some(c => c.id === s.id);
+    return `
+      <div class="svc-card">
+        <div class="svc-bg-letter">${letters[s.cat]||'F'}</div>
+        <span class="svc-icon">${s.icon}</span>
+        <div class="svc-name">${s.name}</div>
+        <div class="svc-desc">${s.desc}</div>
+        <div class="svc-dur">⏱ ${s.dur}</div>
+        <div class="svc-footer">
+          <div>
+            <div class="svc-price">${fmt(s.price)}</div>
+            <div class="svc-price-sub">per sesi</div>
+          </div>
+          <button class="add-btn ${inCart?'active':''}" onclick="toggleCart(${s.id})">
+            ${inCart?'✓':'+'}
+          </button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// CATEGORY TABS
+document.querySelectorAll('.cat-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCat = btn.dataset.cat;
+    renderServices();
+  });
+});
+
+renderServices();
+
+// CART
+function toggleCart(id) {
+  const svc = SERVICES.find(s => s.id === id);
+  const idx = cart.findIndex(c => c.id === id);
+  if(idx > -1) { cart.splice(idx,1); showToast('❌ '+svc.name+' dihapus'); }
+  else { cart.push(svc); showToast('✨ '+svc.name+' ditambahkan!'); }
+  updateCartUI(); renderServices(); renderModalItems();
+}
+
+function removeItem(id) {
+  cart = cart.filter(c => c.id !== id);
+  updateCartUI(); renderServices(); renderModalItems();
+}
+
+function updateCartUI() {
+  const n = cart.length;
+  const total = cart.reduce((a,b) => a+b.price, 0);
+  const cc = $('cart-count'), chip = $('cart-chip');
+  cc.textContent = n;
+  cc.classList.toggle('show', n > 0);
+  if(n > 0){ chip.textContent = fmt(total)+' · '+n+' layanan'; chip.classList.add('show'); }
+  else chip.classList.remove('show');
+}
+
+// MODAL
+function openModal() {
+  $('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  $('form-view').style.display = 'block';
+  $('success-view').classList.remove('show');
+  renderModalItems();
+  const today = new Date().toISOString().split('T')[0];
+  $('f-date').min = today;
+}
+
+function closeModal() {
+  $('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function overlayClick(e) {
+  if(e.target === $('modal-overlay')) closeModal();
+}
+
+function renderModalItems() {
+  const el = $('modal-items');
+  if(cart.length === 0) {
+    el.innerHTML = '<div class="empty-msg">Belum ada layanan dipilih.<br><small>Pilih layanan dari daftar di halaman utama.</small></div>';
+    return;
+  }
+  const total = cart.reduce((a,b) => a+b.price, 0);
+  el.innerHTML = `
+    <div class="order-items">
+      ${cart.map(s=>`
+        <div class="order-item">
+          <div><div class="oi-name">${s.icon} ${s.name}</div><div class="oi-cat">${s.cat}</div></div>
+          <div class="oi-right">
+            <div class="oi-price">${fmt(s.price)}</div>
+            <button class="rm-btn" onclick="removeItem(${s.id})">✕</button>
+          </div>
+        </div>`).join('')}
+    </div>
+    <div class="order-total">
+      <span class="ot-label">Total Estimasi</span>
+      <span class="ot-amount">${fmt(total)}</span>
+    </div>`;
+}
+
+// SUBMIT
+async function submitOrder() {
+  const name  = $('f-name').value.trim();
+  const phone = $('f-phone').value.trim();
+  const date  = $('f-date').value;
+  const time  = $('f-time').value;
+  if(!name)  return showToast('⚠️ Masukkan nama lengkap');
+  if(!phone) return showToast('⚠️ Masukkan nomor WhatsApp');
+  if(!date)  return showToast('⚠️ Pilih tanggal kunjungan');
+  if(!time)  return showToast('⚠️ Pilih jam kunjungan');
+  if(cart.length === 0) return showToast('⚠️ Pilih minimal 1 layanan dulu');
+
+  const btn = $('submit-btn');
+  btn.disabled = true; btn.textContent = 'Mengirim...';
+
+  const code = 'FS-'+Date.now().toString().slice(-6);
+  const total = cart.reduce((a,b)=>a+b.price,0);
+  const payload = {
+    bookingCode : code,
+    timestamp   : new Date().toLocaleString('id-ID',{timeZone:'Asia/Jakarta'}),
+    name, phone, date, time,
+    stylist     : $('f-stylist').value || 'Tersedia / Bebas',
+    services    : cart.map(s=>s.name).join(', '),
+    total       : fmt(total),
+    source      : $('f-source').value,
+    notes       : $('f-notes').value.trim() || '-',
+    status      : 'Menunggu Konfirmasi'
+  };
+
+  try {
+    await fetch(SHEET_URL, {method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)});
+  } catch(_) {}
+
+  $('booking-code').textContent = 'ORDER #'+code;
+  $('form-view').style.display = 'none';
+  $('success-view').classList.add('show');
+  cart = []; updateCartUI(); renderServices();
+}
+
+function resetForm() {
+  ['f-name','f-phone','f-date','f-notes'].forEach(id => $(id).value = '');
+  $('f-time').value = ''; $('f-stylist').value = ''; $('f-source').value = 'Instagram';
+  const btn = $('submit-btn'); btn.disabled = false; btn.textContent = 'Konfirmasi Reservasi →';
+  $('form-view').style.display = 'block';
+  $('success-view').classList.remove('show');
+  renderModalItems();
+}
+
+function resetAndClose() { resetForm(); closeModal(); }
+
+// TOAST
+let toastTimer;
+function showToast(msg) {
+  const t = $('toast'); t.innerHTML = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(()=>t.classList.remove('show'), 3000);
+}
+</script>
+</body>
+</html>
